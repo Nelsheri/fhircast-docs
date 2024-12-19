@@ -1,4 +1,4 @@
-{% include questionnote.html text='Implementer feedback is solicited on the GetCurrentContext operation.' %}
+{% include questionnote.html text='Implementer [feedback](http://hl7.org/fhir-issues) is solicited on the GetCurrentContext operation.' %}
 
 In some situations, Subscribers may want to verify the current context. This section defines a method in which the current context can be retrieved using a GET call. The Hub responds to this GET request with the most recently communicated open event. 
 
@@ -24,6 +24,8 @@ Field | Optionality | Type | Description
 `context`   | Required | array | The context array of the corresponding context element as was supplied in the most recent `-open` event or an empty array if no context is currently established.
 
 ### Content Sharing Support
+
+{% include questionnote.html text='The context of the 'most recent open' may be insufficient to fully communicate the shared context, compared to [sending recent event(s) at the time of subscription](https://hl7.org/fhir/uv/fhircast/2024May/2-4-Subscribing.html#current-context-notification-upon-successful-subscription). Implementer [feedback](http://hl7.org/fhir-issues) is solicited regarding the continued use of the GetCurrentContext operation. Should GetCurrentContext be deprecated in the future? ' %}
 
 If a Hub supports content sharing, the Hub returns the current content in a `content` key in the `context` array.  There SHALL be one and only one `Bundle` resource which SHALL have a `type` of `collection`.  No entry in the `Bundle` SHALL contain a `request` attribute.  The `Bundle` SHALL contain no entries if there is no content associated with the current context.
 
